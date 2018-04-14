@@ -1,0 +1,114 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-color: linen;
+}
+
+td {
+    border-top-style: solid;
+}
+</style>
+</head>
+<body>
+
+<table style="width:100%">
+  <tr style="font-weight:bold; background-color: orange">
+    <td width="300px">Single-instance version cases</td>
+    <td>Graph Results Screenshot</td>
+    <td>Average Query Time(ms)</td>
+    <td>Average Search Servlet Time(ms)</td>
+    <td>Average JDBC Time(ms)</td>
+    <td>Analysis</td>
+  </tr>
+  <tr>
+    <td>Case 1: HTTP/1 thread</td>
+    <td><img src="single_instance/1case1.png" alt="Graph Results Screenshot Case 1" style="width:304px;height:228px;"></td>
+    <td>224ms</td>
+    <td>64.263922ms</td>
+    <td>19.492112ms</td>
+    <td>When only 1 thread and using prepared statement and connection pooling, the average time is most quick. There's no load.</td>
+  </tr>
+  <tr>
+    <td>Case 2: HTTP/10 threads</td>
+    <td><img src="single_instance/1case2.png" alt="Graph Results Screenshot Case 2" style="width:304px;height:228px;"></td>
+    <td>616ms</td>
+    <td>386.329496ms</td>
+    <td>301.949871ms</td>
+    <td>There is a little improvement than the no connection-pooling version.</td>
+  </tr>
+  <tr>
+    <td>Case 3: HTTPS/10 threads</td>
+    <td><img src="single_instance/1case3.png" alt="Graph Results Screenshot Case 3" style="width:304px;height:228px;"></td>
+    <td>631ms</td>
+    <td>291.037361 ms</td>
+    <td>287.664467 ms</td>
+    <td>It is a little quicker than http, but require more time than http to build connections.</td>
+  </tr>
+  <tr>
+    <td>Case 4: HTTP/10 threads/No prepared statements</td>
+    <td><img src="single_instance/1case4.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>690ms</td>
+    <td>284.336706 ms</td>
+    <td>278.48402 ms</td>
+    <td>This shows that no prepared statements have a small preformace decreasement.</td>
+  </tr>
+  <tr>
+    <td>Case 5: HTTP/10 threads/No connection pooling</td>
+    <td><img src="single_instance/1case5.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>631ms</td>
+    <td>478.178482ms</td>
+    <td>367.408377ms</td>
+    <td>It shows prepared statements have an influence on jdbc speed. It cached the statement in the memory, so there's no need to compile the statement each time.</td>
+  </tr>
+
+</table> 
+
+
+<table style="width:100%">
+  <tr style="font-weight:bold; background-color: orange">
+    <td width="300px">Scaled version cases</td>
+    <td>Graph Results Screenshot</td>
+    <td>Average Query Time(ms)</td>
+    <td>Average Search Servlet Time(ms)</td>
+    <td>Average JDBC Time(ms)</td>
+    <td>Analysis</td>
+  </tr>
+  <tr>
+    <td>Case 1: HTTP/1 thread</td>
+    <td><img src="load_balance/2case1.png" alt="Graph Results Screenshot Case 1" style="width:304px;height:228px;"></td>
+    <td>216ms</td>
+    <td>66.354336 ms</td>
+    <td>19.826267 ms</td>
+    <td>It is nearly same with case 1 in single instance version. Only one instance (instance 3 in my case) handle all requests for sticky session only passes requests to one instance.</td>
+  </tr>
+  <tr>
+    <td>Case 2: HTTP/10 threads</td>
+    <td><img src="load_balance/2case2.png" alt="Graph Results Screenshot Case 2" style="width:304px;height:228px;"></td>
+    <td>608ms</td>
+    <td>358.613061 ms</td>
+    <td>313.646401 ms</td>
+    <td>prepared statement and connection pooling increases a little towards the servlet time and jdbc time.</td>
+  </tr>
+  <tr>
+    <td>Case 3: HTTP/10 threads/No prepared statements</td>
+    <td><img src="load_balance/2case3.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>629ms</td>
+    <td>306.814594ms</td>
+    <td>327.617702ms</td>
+    <td>The average request time is improved a little than single AWS instance, because the full-text search needs login. Sticky session functions and all requests have been propergated to a specific instance. So the time is improved a little than Case 4 in Single-instance version.</td>
+  </tr>
+  <tr>
+    <td>Case 4: HTTP/10 threads/No connection pooling</td>
+    <td><img src="load_balance/2case4.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>518ms</td>
+    <td>346.73059ms</td>
+    <td>314.76497ms</td>
+    <td>It has an overall improvement than case 5 in Single-instance version.</td>
+  </tr>
+
+</table> 
+
+</body>
+</html>

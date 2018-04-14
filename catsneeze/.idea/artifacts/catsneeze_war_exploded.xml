@@ -1,0 +1,24 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="catsneeze:war exploded">
+    <output-path>$PROJECT_DIR$/target/catsneeze</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="catsneeze" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.6.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.12" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.12" />
+          <element id="library" level="project" name="Maven: org.glassfish:javax.json:1.0" />
+          <element id="library" level="project" name="Maven: net.tanesha.recaptcha4j:recaptcha4j:0.0.7" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/catsneeze/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="catsneeze/web/Web" />
+    </root>
+  </artifact>
+</component>
