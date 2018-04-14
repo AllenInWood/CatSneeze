@@ -1,4 +1,4 @@
-# cs122b project
+# CatSneeze Online Movie Web Application
 __________________________________________________________________________
 
 # project package structure:
