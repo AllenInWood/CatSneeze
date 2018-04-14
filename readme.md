@@ -1,4 +1,5 @@
-cs122b project
+# cs122b project
+__________________________________________________________________________
 
 # project package structure:
 
