@@ -1,6 +1,9 @@
 # CatSneeze Online Movie Web Application
 __________________________________________________________________________
 
+# Index page demo screenshot:
+<img src="/resources/CatSneeze.png"  alt="main page">
+
 # project package structure:
 
 dao: database access object: about access database
@@ -32,3 +35,14 @@ Use “Select distinct * from creditcards where id = ?” to add variable into s
 * JMeter
 When no login (there’s no session), we use JMeter to request 10 times to a “/genres” service to Load Balancer in Google Cloud.
 Load Balancer pass the request to the two EC2 instances in a round-robin fashion.
+
+# System structure:
+<img src="/resources/structure.png"  alt="structure">
+* Load Balance
+Among them, a load balancer in google cloud is roled by a Apache server, and I use a round-robin fashion for polling. Requests sent from the front end are forwarded to two machines loaded on AWS EC2 in turn. By this method, the burden of access is reduced and the sustainable number of service users is increased.
+
+* Master-Slave Mysql
+MySQLs on two AWSs is deployed in a Master-Slave mode, in which the Master can perform all write operations and partial read operations while the Slave performs partial read operations. Data redundancy is performed on instances2 and instance3. Among them, data replication from master to slave can keep the two databases synchronized at any time.
+
+More relative discuss:
+* [CAP theory practical analysis](https://alleninwood.github.io/2018/04/19/CAP-theory-practical-analysis/#more)
