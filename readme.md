@@ -49,5 +49,5 @@ MySQLs on two AWSs is deployed in a Master-Slave mode, in which the Master can p
 ## Search<br>
 We implemented full-text search and fuzzy search service in a Database UDF method in C++, and used stored procedures for complex movies-related service handling, developed an external program for XML parsing and DB inserting.
 
-## More relative discuss:<br>
+## More related discuss:<br>
 [CAP theory practical analysis](https://alleninwood.github.io/2018/04/19/CAP-theory-practical-analysis/#more)
