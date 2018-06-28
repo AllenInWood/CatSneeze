@@ -1,7 +1,7 @@
 # CatSneeze Online Movie Web Application
 __________________________________________________________________________
 
-Index page demo screenshot:
+# Index page demo screenshot:
 <img src="/resources/CatSneeze.png"  alt="main page">
 
 # project package structure:
@@ -40,10 +40,14 @@ Load Balancer pass the request to the two EC2 instances in a round-robin fashion
 <img src="/resources/structure.png"  alt="structure">
 
 ## Load Balance<br>
-Among them, a load balancer in google cloud is roled by a Apache server, and I use a round-robin fashion for polling. Requests sent from the front end are forwarded to two machines loaded on AWS EC2 in turn. By this method, the burden of access is reduced and the sustainable number of service users is increased.
+Among them, a load balancer in google cloud is roled by a Apache server, and we use a round-robin sticky session fashion for polling. Requests sent from the front end are forwarded to two machines loaded on AWS EC2 in turn. By this method, the burden of access is reduced and the sustainable number of service users is increased.
 
 ## Master-Slave Mysql<br>
+We enabled connection pooling and prepared statement in Master-Slave Mysql method to scale system performance.
 MySQLs on two AWSs is deployed in a Master-Slave mode, in which the Master can perform all write operations and partial read operations while the Slave performs partial read operations. Data redundancy is performed on instances2 and instance3. Among them, data replication from master to slave can keep the two databases synchronized at any time.
+
+## Search<br>
+We implemented full-text search and fuzzy search service in a Database UDF method in C++, and used stored procedures for complex movies-related service handling, developed an external program for XML parsing and DB inserting.
 
 ## More relative discuss:<br>
 [CAP theory practical analysis](https://alleninwood.github.io/2018/04/19/CAP-theory-practical-analysis/#more)
