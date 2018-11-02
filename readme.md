@@ -1,5 +1,9 @@
 # CatSneeze Online Movie Web Application
+Full Stack Web App for selling movies
 __________________________________________________________________________
+1. Implemented restful services with multiple layers to support browsing, ordering, managing etc. operations using Java.
+2. Scaled MVC app with MySQL master-slave replication, Apache load balancing, connection pooling and sticky session in AWS ec2 and GCP to achieve 278.58 ms average query time under multiple threads mode.
+3. Interacted with web UI and a corresponding built Android UI through https.
 
 ## Index page demo screenshot:
 <img src="/resources/CatSneeze.png"  alt="main page">
